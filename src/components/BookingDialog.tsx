@@ -15,6 +15,7 @@ import {
 import { cn } from '@/lib/utils';
 import type { Bike, Booking } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface BookingDialogProps {
   bike: Bike;
@@ -24,6 +25,7 @@ interface BookingDialogProps {
 
 export function BookingDialog({ bike, isOpen, onClose }: BookingDialogProps) {
   const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [phone, setPhone] = useState('');
@@ -161,7 +163,7 @@ export function BookingDialog({ bike, isOpen, onClose }: BookingDialogProps) {
             <Button variant="outline" onClick={() => setShowLoginPrompt(false)} className="flex-1">
               Back
             </Button>
-            <Button onClick={() => window.location.href = '/login'} className="flex-1">
+            <Button onClick={() => navigate('/login')} className="flex-1">
               Sign In
             </Button>
           </DialogFooter>
