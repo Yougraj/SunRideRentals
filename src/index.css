@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(240 10% 3.9%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(240 10% 3.9%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(240 10% 3.9%);
+  --color-primary: hsl(25 95% 53%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(240 4.8% 95.9%);
+  --color-secondary-foreground: hsl(240 5.9% 10%);
+  --color-muted: hsl(240 4.8% 95.9%);
+  --color-muted-foreground: hsl(240 3.8% 46.1%);
+  --color-accent: hsl(240 4.8% 95.9%);
+  --color-accent-foreground: hsl(240 5.9% 10%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(240 5.9% 90%);
+  --color-input: hsl(240 5.9% 90%);
+  --color-ring: hsl(25 95% 53%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* Calendar table layout fix */
+.rdp-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.rdp-head_row {
+  display: flex;
+  width: 100%;
+}
+
+.rdp-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+}
+
+.rdp-head_cell,
+.rdp-cell {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+}
+
+.rdp-head_cell {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  flex: 1;
+}
+
+.rdp-day {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.rdp-day:hover:not([disabled]) {
+  background-color: #f3f4f6;
+}
+
+.rdp-day_selected {
+  background-color: #f97316 !important;
+  color: white !important;
+}
+
+.rdp-day_today {
+  color: #ea580c;
+  font-weight: 600;
+}
+
+.rdp-day_outside {
+  color: #9ca3af;
+  opacity: 0.5;
+}
+
+.rdp-day_disabled {
+  color: #d1d5db;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rdp-caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 8px 0 16px 0;
+}
+
+.rdp-caption_label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.rdp-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 4px;
+}
+
+.rdp-nav_button {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.rdp-nav_button:hover {
+  opacity: 1;
+  background-color: #f3f4f6;
+}
+
+.rdp-nav_button_previous {
+  left: 16px;
+}
+
+.rdp-nav_button_next {
+  right: 16px;
+}
+
