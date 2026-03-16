@@ -15,7 +15,6 @@ import {
 import { cn } from '@/lib/utils';
 import type { Bike, Booking } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
-import { Calendar } from 'primereact/calendar';
 
 interface BookingDialogProps {
   bike: Bike;
@@ -189,16 +188,13 @@ export function BookingDialog({ bike, isOpen, onClose }: BookingDialogProps) {
               Start Date
               <span className="text-red-500">*</span>
             </Label>
-            <Calendar
-              value={startDate || null}
-              onChange={(e) => setStartDate(e.value as Date)}
-              minDate={today}
-              showIcon
-              dateFormat="dd/mm/yy"
+            <Input
+              type="date"
+              value={startDate ? format(startDate, 'yyyy-MM-dd') : ''}
+              onChange={(e) => setStartDate(e.target.value ? new Date(e.target.value) : undefined)}
+              min={format(today, 'yyyy-MM-dd')}
               className="w-full"
-              placeholder="Select start date"
-              readOnlyInput
-      />
+            />
           </div>
 
           {/* End Date */}
@@ -208,14 +204,13 @@ export function BookingDialog({ bike, isOpen, onClose }: BookingDialogProps) {
               End Date
               <span className="text-red-500">*</span>
             </Label>
-            <Calendar
-              value={endDate}
-              onChange={(e) => setEndDate(e.value || undefined)}
-              minDate={startDate || today}
+            <Input
+              type="date"
+              value={endDate ? format(endDate, 'yyyy-MM-dd') : ''}
+              onChange={(e) => setEndDate(e.target.value ? new Date(e.target.value) : undefined)}
+              min={startDate ? format(startDate, 'yyyy-MM-dd') : format(today, 'yyyy-MM-dd')}
               disabled={!startDate}
-              showIcon
-              dateFormat="dd/mm/yy"
-              placeholder={startDate ? "Select end date" : "Select start date first"}
+              className="w-full"
             />
           </div>
 
